@@ -161,10 +161,13 @@ Les gradients qui s'approchent de zéro de manière exponentielle à mesure que 
 #### 2.1.6] Learning Rate
 
 #### 2.1.7] Batch Normalization
+La batch normalization est un procédé utilisé en deep learning pour améliorer la performance de réseaux de neurone. Elle permet de normaliser les sorties à chaque couche du réseau en ajustant la moyenne et l'écart type puis les utilise pour standardiser les données.
 
 #### 2.1.8] Algorithme d'Optimisation d'Adam
+Adam est un optimiseur utilisé pour réduire le temps d'entrainement de grand modèles. il utilise des paramètres adaptatifs  pour chaque modèle ce qui permet de conduire à une convergence plus rapide.
 
 #### 2.1.9] Définir simplement le Perceptron Multicouches
+le perceptron multicouche est un type de réseau de neurones artificiel organisé en plusieurs couches
 
 ### 2.2] Convolutional Neural Networs (CNN)
 
@@ -175,9 +178,14 @@ Les gradients qui s'approchent de zéro de manière exponentielle à mesure que 
 #### 2.2.3] Quelle fonction d'activation pour CNN
 
 #### 2.2.4] Feature Map
+Une feature map est la carte qui permet d'obtenir la localisation des caractéristiques dans l'image.
 
 #### 2.2.5] Couche de Pooling
+La couche de pooling est une opération appliquée entre deux couches de convolution. Elle reçoit en entrée les features map produites en sortie par une couche de convolution et est chargée de réduire la taille des images tout en maintenant les caractéristiques les plus essentielles.
 
+On a le max-pooling et le average pooling
 #### 2.2.6] Couche connectée
-
+Les couches FC sont placées en fin d'architecture et sont entièrement connectées à tous les neurones de sorties.
+Après avoir reçu un vecteur en entrée, elle applique successivement une combinaison linéaire puis une fonction d'activation dans le but final de classifier l'input de l'image.
 #### 2.2.7] Pourquoi préférer un Réseau de neurones convolutifs à un réseau dense pour une tâche de classification
+les CNN sont adaptés pour traiter les données d'images en raison de leur structure convolutive qui permet  de reconnaitre les caractéristiques spécifiques des parties de l'image, tandis que les réseaux de neurones denses sont plus adaptés pour les tâches de classification où les données d'entrées sont déjà vectorielles.
