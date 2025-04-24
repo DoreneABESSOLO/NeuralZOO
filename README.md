@@ -155,10 +155,57 @@ Les gradients qui s'approchent de zéro de manière exponentielle à mesure que 
 
 
 #### 2.1.4] Fonction d'activation
+Une fonction d’activation est un composant fondamental des réseaux de neurones artificiels, utilisé pour introduire la non-linéarité dans le modèle. En termes simples, elle transforme les signaux entrants d’un neurone pour déterminer si ce neurone doit être activé ou non, c’est-à-dire s’il doit transmettre les informations aux neurones suivants.
 
+Dans un réseau de neurones, les signaux bruts, ou données d’entrée, sont pondérés et cumulés dans chaque neurone. La fonction d’activation prend ce cumul et le transforme en une sortie utilisable. Le terme ‘potentiel d’activation’ provient de l’équivalent biologique et représente le seuil de stimulation qui déclenche une réponse du neurone. Ce concept est important dans les réseaux de neurones artificiels car il permet de déterminer quand un neurone doit être activé, en fonction de la somme pondérée des entrées.
+
+Sans fonction d’activation, le modèle serait simplement une combinaison linéaire d’entrées, incapable de résoudre des problèmes complexes. En introduisant la non-linéarité, les fonctions d’activation permettent au réseau de neurones de modéliser des relations complexes et d’apprendre des représentations abstraites des données.
+
+Il existe plusieurs types de fonctions d’activation, chacune avec des caractéristiques et des applications spécifiques, comme : 
+- la fonction Sigmoid
+- la fonction Tanh (Tangente Hyperbolique) 
+- la fonction ReLU (Rectified Linear Unit). 
+
+Ces fonctions sont choisies en fonction des besoins spécifiques du modèle et des données avec lesquelles il travaille.
+‍
 #### 2.1.5] Définition & différenciation d'hyperparamètres
+##### Qu'est-ce qu'une Epoch ?
+Un cycle complet du jeu de données d’entraînement est considéré comme une « époque » dans le domaine du Machine Learning. Elle reflète le nombre de passages de l’algorithme au cours de la phase d’entraînement.
+
+On peut définir une epoch comme le nombre de passages d’un dataset d’entraînement par un algorithme. Un passage équivaut à un aller-retour.
+
+Le nombre d’epochs peut atteindre plusieurs milliers, car la procédure se répète indéfiniment jusqu’à ce que le taux d’erreurs du modèle soit suffisamment réduit.
+
+Une époque est composée d’une agrégation de « batches » ou « lots » de données et d’itérations. Les jeux de données sont généralement décomposés en batches, tout particulièrement lorsque le volume de données est massif.
+
+##### Qu'est-ce qu'une itération ?
+Dans le domaine du Machine Learning, une itération indique le nombre de fois que les paramètres d’un algorithme sont modifiés. Les implications spécifiques dépendent du contexte.
+
+En général, une itération d’entraînement d’un réseau de neurones inclut le « batch processing » ou traitement de lot du dataset, le calcul de la fonction de coût, la modification et la rétropropagation de tous les facteurs de poids.
+
+L’itération et l’époque sont souvent confondues à tort. En réalité, une itération implique le traitement d’un batch tandis qu’une époque désigne le traitement de toutes les données du dataset.
+
+Par exemple, si une itération traite 10 images d’un ensemble de 1000 images avec une taille de batch de 10, il faudra 100 itérations pour terminer une époque.
+
+##### Qu'est-ce qu'un batch ?
+Les données d’entraînement sont décomposées en plusieurs petits « lots » ou « batches » en anglais. Le but est d’éviter les problèmes liés à un manque d’espace de stockage.
+
+Les batches peuvent être facilement utilisés pour nourrir le modèle de Machine Learning afin de l’entraîner. Ce processus de décomposition du dataset est appelé « batch ».
+
+Une epoch peut être composée d’un batch ou davantage. Le nombre d’échantillons d’entraînement utilisés lors d’une itération est la « taille de lot » ou « batch size ». On distingue trois possibilités.
+
+Dans le cas du « Batch Mode », les valeurs d’itération et d’époque sont égales puisque la taille du batch est égale au dataset complet. Une itération équivaut donc à une époque.
+
+En « mini-batch mode », la taille du dataset complet est inférieure à la taille de batch. Par conséquent un seul batch est plus large que le jeu de données d’entraînement.
+
+Enfin, en mode stochastique, la taille du batch est unique. Par conséquent, le gradient et les paramètres du réseau de neurones sont changés à chaque échantillon.
 
 #### 2.1.6] Learning Rate
+Dans le domaine de l’intelligence artificielle, le taux d’apprentissage (learning rate) est le facteur multiplicatif appliqué au gradient. À chaque itération, l'algorithme de descente de gradient multiplie le taux d'apprentissage par le gradient.
+
+Le taux d'apprentissage est un hyperparamètre qui joue sur la rapidité de la descente de gradient : un nombre d’itérations plus ou moins important est nécessaire avant que l’algorithme ne converge, c’est-à-dire qu’un apprentissage optimal du réseau soit réalisé.
+
+Lorsque le learning rate est trop petit, le modèle apprend trop lentement, il peut mettre des heures à converger, tandis que lorsqu'il est trop grand, le modèle fait de grands sauts et ne peut jamais converger, ou diverger (devenir instable).
 
 #### 2.1.7] Batch Normalization
 La batch normalization est un procédé utilisé en deep learning pour améliorer la performance de réseaux de neurone. Elle permet de normaliser les sorties à chaque couche du réseau en ajustant la moyenne et l'écart type puis les utilise pour standardiser les données.
@@ -172,10 +219,30 @@ le perceptron multicouche est un type de réseau de neurones artificiel organis�
 ### 2.2] Convolutional Neural Networs (CNN)
 
 #### 2.2.1] Réseaux de neurones artificiels de type convolutif
+L’architecture d’un réseau de neurones convolutifs est construite pour extraire des valeurs pertinentes à partir de données visuelles complexes. Une capacité rendue possible par l’intégration de layers ou couches fondamentales dans la structure du réseau : Convolutional, Pooling et Fully-Connected.
+
+ ##### Hyperparamètres typiques d'un CNN
+- Taille des filtres : 3×3 ou 5×5 (zone de détection locale)
+- Nombre de filtres : 32, 64, 128… (capacité d’extraction de caractéristiques)
+- Stride : 1 ou 2 (pas du filtre)
+- Padding : valid ou same (garde ou réduit la taille des cartes)
+- Pooling : 2×2 (réduction de dimension, souvent max pooling)
+- Fonction d’activation : ReLU, LeakyReLU (non-linéarité)
+- Taille des couches denses : 128, 256… (pour la classification)
+- Taux d’apprentissage : 0.001 typiquement (vitesse d’apprentissage)
+- Batch size : 32, 64… (taille des lots)
+- Nombre d’époques : 10 à 100+ (nombre de passages sur les données)
+- Dropout : 0.2 à 0.5 (régularisation)
+- Optimiseur : Adam, SGD, RMSprop (mise à jour des poids)
+
 
 #### 2.2.2] Couche convolutive
+La couche de convolution est conçue pour extraire des caractéristiques significatives des données en effectuant une opération de convolution. Des filtres ou noyaux sont appliqués sur l’ensemble des entrées. Chaque filtre, représenté par une matrice de poids, est appliqué de manière glissante sur l’image ou les données d’entrée. Ils calculent la somme pondérée des valeurs à chaque position. Des cartes de caractéristiques sont ainsi générées, mettant en évidence des motifs locaux ou des structures marquantes dans la data. 
+
+La couche de convolution est donc un élément essentiel. Elle permet la reconnaissance des motifs ou pattern par le réseau de neurones, en partageant les poids du filtre à travers différentes parties de l’entrée. Après la convolution, on retrouve une fonction d’activation, généralement ReLU (Rectified Linear Unit). Elle introduit la notion de non-linéarité dans le modèle.
 
 #### 2.2.3] Quelle fonction d'activation pour CNN
+es fonctions d'activation les plus couramment utilisées dans les CNN sont : Unité linéaire rectifiée (ReLU) Sigmoïde Tangente hyperbolique (tanh)
 
 #### 2.2.4] Feature Map
 Une feature map est la carte qui permet d'obtenir la localisation des caractéristiques dans l'image.
@@ -184,8 +251,10 @@ Une feature map est la carte qui permet d'obtenir la localisation des caractéri
 La couche de pooling est une opération appliquée entre deux couches de convolution. Elle reçoit en entrée les features map produites en sortie par une couche de convolution et est chargée de réduire la taille des images tout en maintenant les caractéristiques les plus essentielles.
 
 On a le max-pooling et le average pooling
+
 #### 2.2.6] Couche connectée
 Les couches FC sont placées en fin d'architecture et sont entièrement connectées à tous les neurones de sorties.
 Après avoir reçu un vecteur en entrée, elle applique successivement une combinaison linéaire puis une fonction d'activation dans le but final de classifier l'input de l'image.
+
 #### 2.2.7] Pourquoi préférer un Réseau de neurones convolutifs à un réseau dense pour une tâche de classification
 les CNN sont adaptés pour traiter les données d'images en raison de leur structure convolutive qui permet  de reconnaitre les caractéristiques spécifiques des parties de l'image, tandis que les réseaux de neurones denses sont plus adaptés pour les tâches de classification où les données d'entrées sont déjà vectorielles.
